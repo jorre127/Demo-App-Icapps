@@ -16,7 +16,7 @@ class DetailHeader extends StatelessWidget {
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
         ),
         Spacer(),
-        StarRating(beerRating: beer.rating,)
+        StarRating(beerRating: beer.rating,starSize: 35,)
       ],
     );
   }
