@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme: Typography.whiteCupertino,
         cardColor: Color.fromARGB(255, 29, 28, 37),
+        unselectedWidgetColor:Color.fromARGB(255, 49, 48, 57) ,
         scaffoldBackgroundColor: Color.fromARGB(255, 0, 0, 0),
         accentColor: Color.fromARGB(255, 45, 210, 163),
         iconTheme: IconThemeData(color: Colors.white)
