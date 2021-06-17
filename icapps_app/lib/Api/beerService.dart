@@ -30,4 +30,17 @@ class BeerService {
     print("got beer");
     return Beer.fromJson(parsedResponse["data"]);
   }
+
+  static Future<Response> updateRating(String beerId, int newRating) async {
+    var sharedPreferences = await SharedPreferences.getInstance();
+    var url = Uri.parse(
+        "http://icapps-nodejs-beers-api.herokuapp.com/api/v1/beers/" + beerId);
+    var response = await put(url, headers: {
+      "Authorization": "Bearer " + sharedPreferences.getString("Token")!
+    }, body: {
+      "rating": newRating.toString()
+    });
+    print("changed Rating");
+    return response;
+  }
 }

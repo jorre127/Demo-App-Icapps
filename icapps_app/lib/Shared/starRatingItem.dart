@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class StarRatingItem extends StatelessWidget {
-  final index;
-  final selectedIndex;
+  final int index;
+  final int selectedIndex;
+  final double starSize;
   const StarRatingItem(
-      {Key? key, required this.index, required this.selectedIndex})
+      {Key? key, required this.index, required this.selectedIndex, required this.starSize})
       : super(key: key);
 
   @override
@@ -26,11 +27,11 @@ class StarRatingItem extends StatelessWidget {
           return Stack(
             children: [
               Icon(Icons.star_border_rounded,
-                  size: 35, color: Theme.of(context).unselectedWidgetColor),
+                  size: starSize, color: Theme.of(context).unselectedWidgetColor),
               Transform.scale(
                 scale: value,
                 child: Icon(Icons.star_rounded,
-                    size: 35, color: Theme.of(context).accentColor),
+                    size: starSize, color: Theme.of(context).accentColor),
               )
             ],
           );
