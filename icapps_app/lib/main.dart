@@ -23,7 +23,6 @@ class MyApp extends StatelessWidget {
       home: AuthenticationWrapper(),
       routes: {
         "/Home": (_) => HomePage(),
-        "/Detail": (_) => DetailPage(),
         "/Login": (_) => LoginPage(),
       },
     );
