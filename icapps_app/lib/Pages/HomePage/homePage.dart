@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.transparent,),
+      appBar: AppBar(backgroundColor: Theme.of(context).cardColor,),
       body: Center(
           child: FutureBuilder(
         future: BeerService.getBeers(),
