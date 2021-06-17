@@ -11,6 +11,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   void logIn(BuildContext context) async {
+    print("fires");
     var sharedPreferences = await SharedPreferences.getInstance();
     AuthenticationService.logIn("star_developer@icapps.com", "developer")
         .then((value) => sharedPreferences.setString("Token", value));

@@ -5,7 +5,6 @@ import 'package:icapps_app/Models/beer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class BeerService {
-  
   static Future<List<Beer>> getBeers() async {
     var sharedPreferences = await SharedPreferences.getInstance();
     var url =
@@ -14,6 +13,7 @@ class BeerService {
       "Authorization": "Bearer " + sharedPreferences.getString("Token")!
     });
     var parsedResponse = jsonDecode(response.body);
+    print("got beers");
     return parsedResponse["data"]
         .map<Beer>((beer) => Beer.fromJson(beer))
         .toList();
