@@ -4,7 +4,14 @@ import 'package:icapps_app/Shared/starRatingItem.dart';
 class StarRating extends StatefulWidget {
   final int beerRating;
   final double starSize;
-  const StarRating({Key? key, required this.beerRating, required this.starSize})
+  final bool enabled;
+  final Function? updateRating;
+  const StarRating(
+      {Key? key,
+      required this.beerRating,
+      required this.starSize,
+      required this.enabled,
+      this.updateRating})
       : super(key: key);
 
   @override
@@ -14,10 +21,19 @@ class StarRating extends StatefulWidget {
 class _StarRatingState extends State<StarRating> {
   int selectedIndex;
   _StarRatingState({required this.selectedIndex});
+
   void setSelectedIndex(int newIndex) {
     setState(() {
       selectedIndex = newIndex;
     });
+  }
+
+  @override
+  void didUpdateWidget(covariant StarRating oldWidget) {
+    setState(() {
+          selectedIndex = widget.beerRating;
+    });
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -26,7 +42,12 @@ class _StarRatingState extends State<StarRating> {
       children: List.generate(
           5,
           (index) => GestureDetector(
-              onTap: () => setSelectedIndex(index + 1),
+              onTap: () => widget.enabled
+                  ? {
+                      widget.updateRating!(index + 1),
+                      setSelectedIndex(index + 1)
+                    }
+                  : null,
               child: StarRatingItem(
                 index: index,
                 selectedIndex: selectedIndex,

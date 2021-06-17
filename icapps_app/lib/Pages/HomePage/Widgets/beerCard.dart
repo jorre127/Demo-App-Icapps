@@ -23,7 +23,7 @@ class BeerCard extends StatelessWidget {
             width: 135,
             child: Row(
               children: [
-                StarRating(beerRating: beer.rating, starSize: 20),
+                StarRating(beerRating: beer.rating, starSize: 20, enabled: false,),
                 Spacer(),
                 Icon(
                   Icons.arrow_forward_ios_rounded,
