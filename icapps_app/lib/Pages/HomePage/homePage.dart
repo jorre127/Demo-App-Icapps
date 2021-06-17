@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:icapps_app/Api/beerService.dart';
 import 'package:icapps_app/Models/beer.dart';
-import 'package:icapps_app/Pages/HomePage/Widgets/beerList.dart';
+import 'package:icapps_app/Pages/HomePage/Widgets/GridView/BeerGrid.dart';
+import 'package:icapps_app/Pages/HomePage/Widgets/ListView/beerList.dart';
 import 'package:icapps_app/Shared/modeIcon.dart';
 
 enum ViewModes { listView, gridView }
@@ -70,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                 case ViewModes.listView:
                   return BeerList(beers: data.data!);
                 case ViewModes.gridView:
-                  return Text("gridview");
+                  return BeerGrid(beers: data.data!);
                 default:
                   return BeerList(beers: data.data!);
               }

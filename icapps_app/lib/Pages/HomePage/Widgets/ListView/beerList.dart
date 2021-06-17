@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:icapps_app/Models/beer.dart';
 import 'package:icapps_app/Pages/DetailPage/detailPage.dart';
-import 'package:icapps_app/Pages/HomePage/Widgets/beerCard.dart';
+import 'package:icapps_app/Pages/HomePage/Widgets/ListView/beerCard.dart';
 
 class BeerList extends StatelessWidget {
   final List<Beer> beers;
