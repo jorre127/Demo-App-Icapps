@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:icapps_app/Api/beerService.dart';
 import 'package:icapps_app/Models/beer.dart';
+import 'package:icapps_app/Pages/DetailPage/Widgets/DetailCard/detailCard.dart';
 import 'package:icapps_app/Pages/DetailPage/Widgets/detailAppBar.dart';
-import 'package:icapps_app/Pages/DetailPage/Widgets/detailCard.dart';
 import 'package:icapps_app/Pages/DetailPage/Widgets/detailHeader.dart';
 
 class DetailPage extends StatelessWidget {
@@ -25,13 +25,17 @@ class DetailPage extends StatelessWidget {
                   DetailAppBar(
                     beerImage: data.data!.imageUrl,
                   ),
-                  SliverList(
-                      delegate: SliverChildListDelegate([
-                    DetailHeader(
-                      beer: data.data!,
-                    ),
-                    DetailCard(brewery: data.data!.brewery)
-                  ]))
+                  SliverPadding(
+                    padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                    sliver: SliverList(
+                        delegate: SliverChildListDelegate([
+                      DetailHeader(
+                        beer: data.data!,
+                      ),
+                      SizedBox(height: 20,),
+                      DetailCard(brewery: data.data!.brewery)
+                    ])),
+                  )
                 ],
               );
             } else

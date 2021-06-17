@@ -9,18 +9,15 @@ class DetailHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
-      child: Row(
-        children: [
-          Text(
-            beer.name,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-          ),
-          Spacer(),
-          StarRating()
-        ],
-      ),
+    return Row(
+      children: [
+        Text(
+          beer.name,
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+        ),
+        Spacer(),
+        StarRating(beerRating: beer.rating,)
+      ],
     );
   }
 }
