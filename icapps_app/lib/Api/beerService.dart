@@ -18,4 +18,16 @@ class BeerService {
         .map<Beer>((beer) => Beer.fromJson(beer))
         .toList();
   }
+
+  static Future<Beer> getBeer(String beerId) async {
+    var sharedPreferences = await SharedPreferences.getInstance();
+    var url = Uri.parse(
+        "http://icapps-nodejs-beers-api.herokuapp.com/api/v1/beers/" + beerId);
+    var response = await get(url, headers: {
+      "Authorization": "Bearer " + sharedPreferences.getString("Token")!
+    });
+    var parsedResponse = jsonDecode(response.body);
+    print("got beer");
+    return Beer.fromJson(parsedResponse["data"]);
+  }
 }
