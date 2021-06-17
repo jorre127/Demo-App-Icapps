@@ -13,11 +13,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(),
+      theme: ThemeData(
+        textTheme: Typography.whiteCupertino,
+        cardColor: Color.fromARGB(255, 29, 28, 37),
+        scaffoldBackgroundColor: Color.fromARGB(255, 0, 0, 0),
+        accentColor: Color.fromARGB(255, 45, 210, 163),
+        iconTheme: IconThemeData(color: Colors.white)
+      ),
       home: AuthenticationWrapper(),
       routes: {
         "/Home": (_) => HomePage(),
-        "/Detail": (_) => DetailPage(),
         "/Login": (_) => LoginPage(),
       },
     );
@@ -35,7 +40,8 @@ class AuthenticationWrapper extends StatefulWidget {
 
 class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
   Widget currentPage = LoginPage();
-  void selectWidget(SharedPreferences sharedPreferences) {
+  void selectWidget() async {
+    var sharedPreferences = await SharedPreferences.getInstance();
     setState(() {
       if (sharedPreferences.getString("Token") != null) {
         currentPage = HomePage();
@@ -46,8 +52,13 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
   }
 
   @override
+  void initState() {
+    selectWidget();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    SharedPreferences.getInstance().then((sharedPreferences) => selectWidget(sharedPreferences));
     return currentPage;
   }
 }
