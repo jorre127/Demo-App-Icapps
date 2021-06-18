@@ -38,7 +38,7 @@ class DetailOverview extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  DetailMap()
+                  DetailMap(brewery: beer!.brewery,)
                 ]))
               : SliverList(
                   delegate: SliverChildListDelegate(

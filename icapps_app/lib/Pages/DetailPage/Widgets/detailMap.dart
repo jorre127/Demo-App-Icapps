@@ -1,20 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:icapps_app/Models/brewery.dart';
+import 'package:geocoding/geocoding.dart';
 
 class DetailMap extends StatefulWidget {
-  const DetailMap({Key? key}) : super(key: key);
+  final Brewery brewery;
+  const DetailMap({Key? key, required this.brewery}) : super(key: key);
 
   @override
   _DetailMapState createState() => _DetailMapState();
 }
 
 class _DetailMapState extends State<DetailMap> {
-  late GoogleMapController mapController;
+  final Map<String, Marker> markers = {};
 
-  final LatLng center = const LatLng(45.521563, -122.677433);
-
-  void onMapCreated(GoogleMapController controller) {
-    mapController = controller;
+  void onMapCreated(GoogleMapController controller) async {
+    var address = widget.brewery.address + widget.brewery.city;
+    var addresses = await locationFromAddress(address);
+    var first = addresses.first;
+    setState(() {
+      markers.clear();
+      final marker = Marker(
+        infoWindow: InfoWindow(title: widget.brewery.name),
+          markerId: MarkerId("0"),
+          position: LatLng(first.latitude, first.longitude));
+      markers["0"] = marker;
+      controller.moveCamera(CameraUpdate.newCameraPosition(CameraPosition(
+          zoom: 14,
+          target: LatLng(markers["0"]!.position.latitude,
+              markers["0"]!.position.longitude))));
+    });
   }
 
   @override
@@ -26,10 +41,11 @@ class _DetailMapState extends State<DetailMap> {
         child: SizedBox(
           height: 250,
           child: GoogleMap(
+              markers: markers.values.toSet(),
               onMapCreated: onMapCreated,
               initialCameraPosition: CameraPosition(
-                target: center,
-                zoom: 0.1,
+                target: const LatLng(0, 0),
+                zoom: 14,
               )),
         ),
       ),
