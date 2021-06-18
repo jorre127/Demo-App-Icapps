@@ -41,6 +41,7 @@ class BeerService {
       "rating": newRating.toString()
     });
     print("changed Rating");
+    print(response.body.toString());
     return response;
   }
 }
