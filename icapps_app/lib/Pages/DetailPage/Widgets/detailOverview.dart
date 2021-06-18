@@ -3,6 +3,7 @@ import 'package:icapps_app/Models/beer.dart';
 import 'package:icapps_app/Pages/DetailPage/Widgets/DetailCard/detailCard.dart';
 import 'package:icapps_app/Pages/DetailPage/Widgets/detailAppBar.dart';
 import 'package:icapps_app/Pages/DetailPage/Widgets/detailHeader.dart';
+import 'package:icapps_app/Pages/DetailPage/Widgets/detailMap.dart';
 
 class DetailOverview extends StatelessWidget {
   final Beer? beer;
@@ -33,7 +34,11 @@ class DetailOverview extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  DetailCard(brewery: beer!.brewery)
+                  DetailCard(brewery: beer!.brewery),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  DetailMap()
                 ]))
               : SliverList(
                   delegate: SliverChildListDelegate(
