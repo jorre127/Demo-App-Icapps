@@ -26,6 +26,12 @@ class _ViewtransitioniState extends State<BeerOverview> {
     super.initState();
   }
 
+  @override
+  void didUpdateWidget(covariant BeerOverview oldWidget) {
+    views = [BeerList(beers: widget.beers), BeerGrid(beers: widget.beers)];
+    super.didUpdateWidget(oldWidget);
+  }
+
   void changeCurrentViewMode(int newIndex) {
     setState(() {
       currentIndex = newIndex;

@@ -18,6 +18,7 @@ class BeerGrid extends StatelessWidget {
       crossAxisSpacing: 20,
       children: beers
           .map((beer) => OpenContainer(
+            useRootNavigator: true,
             closedColor: Colors.transparent,
                 closedBuilder: (BuildContext context, void Function() action) {
                   return BeerTile(beer: beer);
