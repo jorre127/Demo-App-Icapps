@@ -7,9 +7,10 @@ import 'package:icapps_app/Pages/HomePage/Widgets/header.dart';
 
 class BeerOverview extends StatefulWidget {
   final List<Beer> beers;
+  final Function setSearchTerm;
   const BeerOverview({
     Key? key,
-    required this.beers,
+    required this.beers, required this.setSearchTerm,
   }) : super(key: key);
 
   @override
@@ -46,6 +47,7 @@ class _ViewtransitioniState extends State<BeerOverview> {
           Header(
             changeCurrentViewMode: changeCurrentViewMode,
             currentIndex: currentIndex,
+            setSearchTerm: widget.setSearchTerm,
           ),
           SizedBox(
             height: 20,

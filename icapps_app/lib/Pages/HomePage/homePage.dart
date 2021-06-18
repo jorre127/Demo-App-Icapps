@@ -12,6 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late Future<List<Beer>> futureBeer;
+  String searchTerm = "";
 
   @override
   void initState() {
@@ -22,6 +23,12 @@ class _HomePageState extends State<HomePage> {
   Future refreshBeers() async {
     setState(() {
       futureBeer = BeerService.getBeers();
+    });
+  }
+
+  void setSearchTerm(String newTerm) {
+    setState(() {
+          searchTerm = newTerm;
     });
   }
 
@@ -38,7 +45,12 @@ class _HomePageState extends State<HomePage> {
           builder: (BuildContext context, AsyncSnapshot<List<Beer>> data) {
             if (data.hasData) {
               return BeerOverview(
-                beers: data.data!,
+                beers: data.data!
+                    .where((element) => element.name
+                        .toLowerCase()
+                        .contains(searchTerm.toLowerCase()))
+                    .toList(),
+                setSearchTerm: setSearchTerm,
               );
             } else
               return Center(
