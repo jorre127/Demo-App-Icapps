@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:icapps_app/Models/beer.dart';
 import 'package:icapps_app/Pages/DetailPage/detailPage.dart';
@@ -16,14 +17,19 @@ class BeerGrid extends StatelessWidget {
       mainAxisSpacing: 20,
       crossAxisSpacing: 20,
       children: beers
-          .map((beer) => GestureDetector(
-              onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext contex) => DetailPage(
-                            beerId: beer.id,
-                          ))),
-              child: BeerTile(beer: beer)))
+          .map((beer) => OpenContainer(
+            closedColor: Colors.transparent,
+                closedBuilder: (BuildContext context, void Function() action) {
+                  return BeerTile(beer: beer);
+                },
+                openBuilder: (BuildContext context,
+                    void Function({Object? returnValue}) action) {
+                  return DetailPage(
+                    beerId: beer.id,
+                    beerImage: beer.imageUrl,
+                  );
+                },
+              ))
           .toList(),
     );
   }
