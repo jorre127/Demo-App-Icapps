@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:icapps_app/Pages/HomePage/homePage.dart';
 
 class ModeIcon extends StatelessWidget {
   final IconData icon;
-  final ViewModes viewMode;
-  final ViewModes currentViewMode;
+  final int index;
+  final int selectedIndex;
   final Function changeViewMode;
   const ModeIcon(
       {Key? key,
       required this.icon,
-      required this.viewMode,
-      required this.changeViewMode,
-      required this.currentViewMode})
+      required this.changeViewMode, required this.index, required this.selectedIndex,})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => changeViewMode(viewMode),
+      onTap: () => changeViewMode(index),
       child: Align(
         alignment: Alignment.center,
         child: ClipRRect(
@@ -25,12 +22,12 @@ class ModeIcon extends StatelessWidget {
           child: Container(
             width: 45,
             height: 45,
-            color: viewMode == currentViewMode
+            color: index == selectedIndex
                 ? Theme.of(context).cardColor
                 : null,
             child: Icon(
               icon,
-              color: viewMode == currentViewMode
+              color: index == selectedIndex
                   ? Theme.of(context).accentColor
                   : null,
             ),

@@ -13,7 +13,7 @@ class DetailAppBar extends StatelessWidget {
       stretch: true,
       pinned: true,
       snap: false,
-      expandedHeight: 260,
+      expandedHeight: 350,
       flexibleSpace: FlexibleSpaceBar(
         background: Image.network(
           beerImage,

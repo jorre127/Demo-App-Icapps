@@ -17,6 +17,7 @@ class BeerList extends StatelessWidget {
                   MaterialPageRoute(
                       builder: (BuildContext contex) => DetailPage(
                             beerId: beer.id,
+                            beerImage: beer.imageUrl,
                           ))),
               child: BeerCard(beer: beer)))
           .toList(),
