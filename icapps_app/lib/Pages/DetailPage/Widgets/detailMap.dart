@@ -13,6 +13,7 @@ class DetailMap extends StatefulWidget {
 
 class _DetailMapState extends State<DetailMap> {
   final Map<String, Marker> markers = {};
+  bool show = false;
 
   void onMapCreated(GoogleMapController controller) async {
     var address = widget.brewery.address + widget.brewery.city;
@@ -21,7 +22,7 @@ class _DetailMapState extends State<DetailMap> {
     setState(() {
       markers.clear();
       final marker = Marker(
-        infoWindow: InfoWindow(title: widget.brewery.name),
+          infoWindow: InfoWindow(title: widget.brewery.name),
           markerId: MarkerId("0"),
           position: LatLng(first.latitude, first.longitude));
       markers["0"] = marker;
@@ -30,6 +31,7 @@ class _DetailMapState extends State<DetailMap> {
           target: LatLng(markers["0"]!.position.latitude,
               markers["0"]!.position.longitude))));
     });
+    show = true;
   }
 
   @override
@@ -40,13 +42,22 @@ class _DetailMapState extends State<DetailMap> {
         borderRadius: BorderRadius.circular(10),
         child: SizedBox(
           height: 250,
-          child: GoogleMap(
-              markers: markers.values.toSet(),
-              onMapCreated: onMapCreated,
-              initialCameraPosition: CameraPosition(
-                target: const LatLng(0, 0),
-                zoom: 14,
-              )),
+          child: TweenAnimationBuilder(
+            duration: Duration(milliseconds: 250),
+            tween: Tween(begin: 0.0, end: show? 1.0 : 0.0),
+            builder: (BuildContext context, double value, Widget? child) {
+              return Opacity(
+                opacity: value,
+                child: GoogleMap(
+                    markers: markers.values.toSet(),
+                    onMapCreated: onMapCreated,
+                    initialCameraPosition: CameraPosition(
+                      target: const LatLng(0, 0),
+                      zoom: 14,
+                    )),
+              );
+            },
+          ),
         ),
       ),
     );
