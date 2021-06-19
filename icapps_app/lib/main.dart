@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:icapps_app/Pages/DetailPage/detailPage.dart';
 import 'package:icapps_app/Pages/HomePage/homePage.dart';
 import 'package:icapps_app/Pages/LoginPage/loginPage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
