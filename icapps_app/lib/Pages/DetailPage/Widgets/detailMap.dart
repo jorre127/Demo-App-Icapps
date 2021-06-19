@@ -14,6 +14,7 @@ class DetailMap extends StatefulWidget {
 class _DetailMapState extends State<DetailMap> {
   final Map<String, Marker> markers = {};
   bool show = false;
+  bool loadMap = false;
 
   void onMapCreated(GoogleMapController controller) async {
     var address = widget.brewery.address + widget.brewery.city;
@@ -30,8 +31,18 @@ class _DetailMapState extends State<DetailMap> {
           zoom: 14,
           target: LatLng(markers["0"]!.position.latitude,
               markers["0"]!.position.longitude))));
+      show = true;
     });
-    show = true;
+  }
+
+  @override
+  void initState() {
+    Future.delayed(const Duration(milliseconds: 200), () {
+      setState(() {
+        loadMap = true;
+      });
+    });
+    super.initState();
   }
 
   @override
@@ -44,17 +55,19 @@ class _DetailMapState extends State<DetailMap> {
           height: 250,
           child: TweenAnimationBuilder(
             duration: Duration(milliseconds: 250),
-            tween: Tween(begin: 0.0, end: show? 1.0 : 0.0),
+            tween: Tween(begin: 0.0, end: show ? 1.0 : 0.0),
             builder: (BuildContext context, double value, Widget? child) {
               return Opacity(
                 opacity: value,
-                child: GoogleMap(
-                    markers: markers.values.toSet(),
-                    onMapCreated: onMapCreated,
-                    initialCameraPosition: CameraPosition(
-                      target: const LatLng(0, 0),
-                      zoom: 14,
-                    )),
+                child: loadMap
+                    ? GoogleMap(
+                        markers: markers.values.toSet(),
+                        onMapCreated: onMapCreated,
+                        initialCameraPosition: CameraPosition(
+                          target: const LatLng(0, 0),
+                          zoom: 14,
+                        ))
+                    : null,
               );
             },
           ),
