@@ -10,6 +10,7 @@ class DetailAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      iconTheme: IconThemeData(color: Theme.of(context).accentColor),
       backgroundColor: Colors.transparent,
       stretch: true,
       pinned: true,
