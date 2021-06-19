@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:icapps_app/Models/beer.dart';
 import 'package:icapps_app/Shared/starRating.dart';
@@ -14,8 +15,8 @@ class BeerTile extends StatelessWidget {
         Expanded(
           child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Image.network(
-                beer.thumbImageUrl,
+              child: CachedNetworkImage(
+                imageUrl: beer.imageUrl,
                 fit: BoxFit.cover,
               )),
         ),

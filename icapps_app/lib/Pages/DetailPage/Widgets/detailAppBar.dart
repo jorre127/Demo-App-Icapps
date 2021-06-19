@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class DetailAppBar extends StatelessWidget {
   final beerImage;
@@ -15,8 +16,9 @@ class DetailAppBar extends StatelessWidget {
       snap: false,
       expandedHeight: 350,
       flexibleSpace: FlexibleSpaceBar(
-        background: Image(
-          image: NetworkImage(beerImage),
+        background: CachedNetworkImage(
+          fadeInDuration: Duration(milliseconds: 100),
+          imageUrl: beerImage,
           fit: BoxFit.cover,
         ),
       ),
