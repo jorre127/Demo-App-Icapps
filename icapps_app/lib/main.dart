@@ -19,9 +19,9 @@ class MyApp extends StatelessWidget {
         unselectedWidgetColor:Color.fromARGB(255, 49, 48, 57) ,
         scaffoldBackgroundColor: Color.fromARGB(255, 0, 0, 0),
         accentColor: Color.fromARGB(255, 45, 210, 163),
-        iconTheme: IconThemeData(color: Colors.white)
+        iconTheme: IconThemeData(color: Colors.white),
       ),
-      home: AuthenticationWrapper(),
+      home: LoginPage(),
       routes: {
         "/Home": (_) => HomePage(),
         "/Login": (_) => LoginPage(),

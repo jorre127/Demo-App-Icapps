@@ -15,8 +15,8 @@ class DetailAppBar extends StatelessWidget {
       snap: false,
       expandedHeight: 350,
       flexibleSpace: FlexibleSpaceBar(
-        background: Image.network(
-          beerImage,
+        background: Image(
+          image: NetworkImage(beerImage),
           fit: BoxFit.cover,
         ),
       ),
