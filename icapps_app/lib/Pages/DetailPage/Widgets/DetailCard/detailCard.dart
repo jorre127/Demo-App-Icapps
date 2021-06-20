@@ -15,10 +15,21 @@ class DetailCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            DetailCardItem(label: "Brewery", value: brewery.name),
-            DetailCardItem(label: "City", value: brewery.city),
-            DetailCardItem(label: "Country", value: brewery.country),
-            DetailCardItem(label: "Address", value: brewery.address),
+            DetailCardItem(
+              label: "Brewery",
+              value: brewery.name,
+              svgName: 'assets/beer.svg',
+            ),
+            DetailCardItem(
+                label: "City", value: brewery.city, svgName: 'assets/city.svg'),
+            DetailCardItem(
+                label: "Country",
+                value: brewery.country,
+                svgName: 'assets/country.svg'),
+            DetailCardItem(
+                label: "Address",
+                value: brewery.address,
+                svgName: 'assets/home.svg'),
           ],
         ),
       ),
