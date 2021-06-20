@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:icapps_app/Pages/HomePage/homePage.dart';
 import 'package:icapps_app/Pages/LoginPage/loginPage.dart';
+import 'package:icapps_app/Shared/customProgressIndicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme: Typography.whiteCupertino,
         cardColor: Color.fromARGB(255, 29, 28, 37),
-        unselectedWidgetColor:Color.fromARGB(255, 49, 48, 57) ,
+        unselectedWidgetColor: Color.fromARGB(255, 49, 48, 57),
         scaffoldBackgroundColor: Color.fromARGB(255, 0, 0, 0),
         accentColor: Color.fromARGB(255, 45, 210, 163),
         iconTheme: IconThemeData(color: Colors.white),
@@ -39,7 +40,9 @@ class AuthenticationWrapper extends StatefulWidget {
 }
 
 class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
-  Widget currentPage = LoginPage();
+  Widget currentPage = Center(
+    child: CustomProgressIndicator(),
+  );
   void selectWidget() async {
     var sharedPreferences = await SharedPreferences.getInstance();
     setState(() {

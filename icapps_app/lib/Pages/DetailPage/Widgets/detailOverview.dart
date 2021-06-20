@@ -4,6 +4,7 @@ import 'package:icapps_app/Pages/DetailPage/Widgets/DetailCard/detailCard.dart';
 import 'package:icapps_app/Pages/DetailPage/Widgets/detailAppBar.dart';
 import 'package:icapps_app/Pages/DetailPage/Widgets/detailHeader.dart';
 import 'package:icapps_app/Pages/DetailPage/Widgets/detailMap.dart';
+import 'package:icapps_app/Shared/customProgressIndicator.dart';
 
 class DetailOverview extends StatelessWidget {
   final Beer? beer;
@@ -42,7 +43,7 @@ class DetailOverview extends StatelessWidget {
                 ]))
               : SliverList(
                   delegate: SliverChildListDelegate(
-                      [Center(child: CircularProgressIndicator())])),
+                      [Center(child: CustomProgressIndicator())])),
         )
       ],
     );

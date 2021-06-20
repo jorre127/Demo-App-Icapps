@@ -10,28 +10,31 @@ class BeerGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-      childAspectRatio: 1 / 1.4,
-      crossAxisCount: 2,
+    return GridView.builder(
       padding: EdgeInsets.all(10),
-      mainAxisSpacing: 20,
-      crossAxisSpacing: 20,
-      children: beers
-          .map((beer) => OpenContainer(
-            useRootNavigator: true,
-            closedColor: Colors.transparent,
-                closedBuilder: (BuildContext context, void Function() action) {
-                  return BeerTile(beer: beer);
-                },
-                openBuilder: (BuildContext context,
-                    void Function({Object? returnValue}) action) {
-                  return DetailPage(
-                    beerId: beer.id,
-                    beerImage: beer.imageUrl,
-                  );
-                },
-              ))
-          .toList(),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 1 / 1.4,
+        mainAxisSpacing: 20,
+        crossAxisSpacing: 20,
+      ),
+      itemBuilder: (BuildContext context, int index) {
+        return OpenContainer(
+          useRootNavigator: true,
+          closedColor: Colors.transparent,
+          closedBuilder: (BuildContext context, void Function() action) {
+            return BeerTile(beer: beers[index]);
+          },
+          openBuilder: (BuildContext context,
+              void Function({Object? returnValue}) action) {
+            return DetailPage(
+              beerId: beers[index].id,
+              beerImage: beers[index].imageUrl,
+            );
+          },
+        );
+      },
+      itemCount: beers.length,
     );
   }
 }

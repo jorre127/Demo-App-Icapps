@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:icapps_app/Api/beerService.dart';
 import 'package:icapps_app/Models/beer.dart';
 import 'package:icapps_app/Pages/HomePage/Widgets/beerOverview.dart';
+import 'package:icapps_app/Shared/customProgressIndicator.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -70,7 +71,7 @@ class _HomePageState extends State<HomePage> {
               );
             } else
               return Center(
-                child: CircularProgressIndicator(),
+                child: CustomProgressIndicator(),
               );
           },
         ),

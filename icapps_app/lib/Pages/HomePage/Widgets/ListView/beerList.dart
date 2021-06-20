@@ -9,18 +9,19 @@ class BeerList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: beers
-          .map((beer) => GestureDetector(
-              onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext contex) => DetailPage(
-                            beerId: beer.id,
-                            beerImage: beer.imageUrl,
-                          ))),
-              child: BeerCard(beer: beer)))
-          .toList(),
+    return ListView.builder(
+      itemCount: beers.length,
+      itemBuilder: (BuildContext context, int index) {
+        return GestureDetector(
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext contex) => DetailPage(
+                          beerId: beers[index].id,
+                          beerImage: beers[index].imageUrl,
+                        ))),
+            child: BeerCard(beer: beers[index]));
+      },
     );
   }
 }
